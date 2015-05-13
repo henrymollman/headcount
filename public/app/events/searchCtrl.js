@@ -1,6 +1,4 @@
-
 angular.module('headcount.events')
-
 
 .controller('SearchController', function ($scope, $http, $q) {
 
@@ -9,7 +7,6 @@ $scope.search = {
     };
 
 $scope.searchResults = [];
-
 
   $scope.searchAmazon = function() {
    $http({
@@ -32,4 +29,3 @@ $scope.searchResults = [];
     });
   };
 });
-
