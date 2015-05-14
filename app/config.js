@@ -3,7 +3,7 @@ var Bookshelf = require('bookshelf');
 var knex =  !process.env.DATABASE_URL ? require('./local_config.js') :
   require('knex')({
   client: 'pg',
-  connection: "postgres://hyqvgweyfizgnu:BRybM1zo8C2g5BH8ZpxOFAXAUa@ec2-107-20-152-139.compute-1.amazonaws.com:5432/dafdn2jg3i0eqg"// process.env.DATABASE_URL
+  connection: process.env.DATABASE_URL
 });
 
 var db = require('bookshelf')(knex);
