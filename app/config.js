@@ -3,7 +3,7 @@ var Bookshelf = require('bookshelf');
 var knex =  !process.env.DATABASE_URL ? require('./local_config.js') :
   require('knex')({
   client: 'pg',
-  connection: process.env.DATABASE_URL
+  connection: "postgres://hyqvgweyfizgnu:BRybM1zo8C2g5BH8ZpxOFAXAUa@ec2-107-20-152-139.compute-1.amazonaws.com:5432/dafdn2jg3i0eqg"// process.env.DATABASE_URL
 });
 
 var db = require('bookshelf')(knex);
@@ -13,7 +13,7 @@ db.plugin('registry');
  * Columns email, firstName, lastName, shippingAddress and phoneNumber are currently not being used.
  */
 
-db.knex.schema.dropTableIfExists('users', function(){
+//db.knex.schema.dropTableIfExists('users', function(){
   db.knex.schema.createTable('users', function (user) {
     user.increments('id').primary();
     user.string('username', 100).unique();
@@ -35,7 +35,7 @@ db.knex.schema.dropTableIfExists('users', function(){
   }).then(function (table) {
     console.log('Created Table', table);
   });
-});
+// });
 
 db.knex.schema.hasTable('events').then(function(exists) {
   if (!exists) {
