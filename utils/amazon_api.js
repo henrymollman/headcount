@@ -5,10 +5,10 @@ var oauth = require('./../oauth.js');
 
 
 var opHelper = new OperationHelper({
-    awsId:     oauth.amazonProductsApi.awsId, 
-    awsSecret: oauth.amazonProductsApi.awsSecret, 
-    assocId:   oauth.amazonProductsApi.assocId,
-    version:   oauth.amazonProductsApi.version
+    awsId:     oauth.ids.amazonProductsApi.awsId, 
+    awsSecret: oauth.ids.amazonProductsApi.awsSecret, 
+    assocId:   oauth.ids.amazonProductsApi.assocId,
+    version:   oauth.ids.amazonProductsApi.version
 });
 
 
