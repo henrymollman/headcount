@@ -25,3 +25,5 @@ app/local_config.js
 # ubuntu procfile does not match mac procfile
 # ignore database keys
 db_keys.js
+# Hide Facebook oauth
+oauth.js
