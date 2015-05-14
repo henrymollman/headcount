@@ -15,6 +15,7 @@ var User = db.Model.extend({
     });
   },
   hashPassword: function(){
+    console.log('hashing password');
     var cipher = Promise.promisify(bcrypt.hash);
     return cipher(this.get('password'), null, null)
       .bind(this)
