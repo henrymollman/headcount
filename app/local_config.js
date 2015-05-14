@@ -3,9 +3,9 @@ var knex = require('knex')({
   connection: {
     host     : 'ec2-107-20-152-139.compute-1.amazonaws.com',
     port     : '5432',
-    user     : 'arwzqgmvskbpru',
-    password : '1KDxsrcFr5GiFRDbOS8kbxHr6x',
-    database : 'd3pt591f13qttq',
+    user     : 'zhznzowfpbgfdu',
+    password : '6keAIlswCYtY898NE5iVeY654z',
+    database : 'd4cimi02te5n7m',
     charset  : 'utf8',
     ssl      : true
   }
