@@ -25,3 +25,5 @@ public/lib
 db_keys.js
 # Hide Facebook oauth
 oauth.js
+# hide inaudiblecentaur heroku
+inaudiblecentaur-headcount
