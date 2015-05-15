@@ -1,6 +1,8 @@
 var util = require('util');
 var OperationHelper = require('apac').OperationHelper;
+if (!process.env.fbClientID) {
 var oauth = require('./../oauth.js');
+}
 
 var opHelper = new OperationHelper({
     awsId:     process.env.awsId || oauth.ids.amazonProductsApi.awsId,
@@ -32,7 +34,7 @@ var opHelper = new OperationHelper({
         res.send(err)
       }
       else {
-        
+
         res.send(JSON.stringify(results));
       }
     })
