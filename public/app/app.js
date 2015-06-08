@@ -35,7 +35,7 @@ angular.module('headcount', [
       controller: 'AccountsController',
       authenticate: true,
     })
-    .when('/search', {
+    .when('/amazon', {
       templateUrl: 'app/events/search.html',
       controller: 'SearchController',
       authenticate: false,
