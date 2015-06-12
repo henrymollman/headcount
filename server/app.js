@@ -82,6 +82,7 @@ passport.use(new FacebookStrategy({
   callbackURL: process.env.fbCallbackURL || oauth.ids.facebook.callbackURL
 },
 function(accessToken, refreshToken, profile, done) {
+  console.log(accessToken)
   new User({ facebookId: profile.id })
   .fetch()
   .then(function(model){
