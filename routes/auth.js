@@ -2,9 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User  = require('./../app/models/user');
 var passport = require('passport');
-if (!process.env.fbClientID) {
-var oauth = require('./../oauth.js');
-}
+
 /**
  * handleAuth creates a session object, which we then store the username as a user
  * property under the req.session object
