@@ -1,28 +1,23 @@
-angular.module('headcount.auth', ['satellizer'])
+angular.module('headcount.auth', [])
 
-.config(function($authProvider){
-  $authProvider.facebook({
-    clientId: '654569731343865'
-  });
-})
+.controller('AuthController', function ($scope, $window, $location, $http, Auth) {
 
-.controller('AuthController', function ($scope, $window, $location, $http, Auth, $auth) {
+  /**
+   * $scope.user holds onto any input on the signin.html and signup.html input
+   * fields.
+   */
 
   $scope.user = {};
-  $scope.auth = Auth.isAuth();
-  $scope.hasTriedLogin = false;
-  $scope.hasTriedSignup = false;
 
-  $scope.OAuthLogin = function (provider) {
-    $auth.authenticate(provider).then(function(res){
-      $window.sessionStorage.setItem('user', res.data.user);
-      $location.path('/');
-    });
-  };
+  /**
+   * $scope.signin & $scope.signup both make a POST request to the routes/auth.js file
+   * with the attempted login information from $scope.user. On successful authentication,
+   * it sets the session item 'user' to the username, so that we can render the content
+   * specifically to the user that's currently signed in.
+   */
 
   $scope.signin = function () {
 
-    console.log('$scope.signin method on AuthController');
     return $http({
       method: 'POST',
       url: '/auth/local',
@@ -33,14 +28,12 @@ angular.module('headcount.auth', ['satellizer'])
       $window.location.href = "/";
     })
     .catch(function(error) {
-      // $window.alert("Incorrect login, please try again!");
-      $scope.hasTriedLogin = true;
+      $window.alert("Incorrect login, please try again!");
     });
   };
 
   $scope.signup = function () {
 
-    console.log('$scope.signup method on AuthController');
     return $http({
       method: 'POST',
       url: '/auth/local-signup',
@@ -51,32 +44,28 @@ angular.module('headcount.auth', ['satellizer'])
         $window.location.href = "/";
     })
     .catch(function(error) {
-      // $window.alert("Username already exists, please try again!");
-      $scope.hasTriedSignup = true;
+      $window.alert("Username already exists, please try again!");
     });
   };
 
+  /**
+  * $scope.signout calls Auth.signout on the 'Auth' factory, under the services.js
+  * file. It destroys the session item 'user', and then resets the view to the sign-in
+  * page. It also makes a GET request to routes/auth.js's logout route, which will also
+  * destroy the express-session token on the backend, then alerts the user on a
+  * successful request.
+  */
+
   $scope.signout = function(){
 
-    console.log('$scope.signout method on AuthController');
     Auth.signout();
-    $auth.logout();
-    $scope.auth = Auth.isAuth();
     return $http({
       method: 'GET',
       url: '/auth/logout'
     })
     .then(function(resp) {
-      // do nothing
+      $window.alert("You've signed out!");
     });
-  };
-
-  $scope.isAuth = function () {
-    return !!$window.sessionStorage.getItem('user') || $auth.isAuthenticated();
-  };
-
-  $scope.getUser = function () {
-    return $window.sessionStorage.getItem('user');
   };
 
 });

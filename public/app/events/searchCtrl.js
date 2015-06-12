@@ -66,6 +66,7 @@ $scope.addToCart = function(ASIN, imageURL, description) {
     data: {keyword: $scope.search.search, category: category}
     })
     .then(function(response) {
+      console.log(response)
       var results = response.data.ItemSearchResponse.Items[0].Item;
       console.dir(results);
         for (var i = 0; i < results.length; i++) {
